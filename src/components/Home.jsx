@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import {Table} from 'semantic-ui-react';
+import axios from 'axios'
 
 const Home = () => {
       const [user, setUser] = useState([]);
 
-  const fetchData = () => { 
-    return fetch("https://jsonplaceholder.typicode.com/users")
-          .then((response) => response.json())
-          .then((data) => setUser(data));
+  const fetchData
+    = ()=>{
+      axios.get('https://jsonplaceholder.typicode.com/users').then(
+          (response)=>{
+              console.log(response.data);
+              setUser(response.data);
+          }
+      ).catch()
   }
   useEffect(() => {
     fetchData();
